@@ -1,12 +1,19 @@
 package com.example.fam.bullshitapp;
 
 import android.util.Log;
+import android.os.Build;
+
 
 import com.google.android.gms.maps.model.LatLng;
+
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.Serializable;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 
@@ -34,6 +41,29 @@ public class Controller implements Serializable {
                 return latLng;
             } catch (JSONException e) {
                 e.printStackTrace();
+                return null;
+            }
+        }
+        return null;
+    }
+
+    public ArrayList<String> getISSPersons() {
+        String response = HttpManager.getData(BuildUrl.getIssUrlPersons());
+        if (response != null) {
+            try {
+                JSONObject jsonObject = new JSONObject(response);
+                ArrayList<String> persons = new ArrayList<>();
+                JSONArray jsonPersons = jsonObject.getJSONArray("people");
+                for (int i = 0; i < jsonPersons.length(); i++) {
+                    JSONObject person = jsonPersons.getJSONObject(i);
+                    if (person.getString("craft").equals("ISS")) {
+                        persons.add(person.getString("name"));
+                    }
+                }
+                return persons;
+            } catch (JSONException e) {
+                e.printStackTrace();
+                return null;
             }
         }
         return null;

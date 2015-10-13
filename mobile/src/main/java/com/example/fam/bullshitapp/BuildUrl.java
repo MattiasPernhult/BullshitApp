@@ -20,4 +20,7 @@ public class BuildUrl {
         return "http://api.open-notify.org/iss-now.json";
     }
 
+    public static String getIssUrlPersons() {
+        return "http://api.open-notify.org/astros.json";
+    }
 }
