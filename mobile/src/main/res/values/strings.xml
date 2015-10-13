@@ -6,4 +6,7 @@
     <string name="title_activity_space">SpaceActivity</string>
     <string name="title_activity_giphy">GiphyActivity</string>
     <string name="title_activity_yoda">Yoda</string>
+    <string name="persons_on_iss">Persons on ISS</string>
+    <string name="finish">Done</string>
+    <string name="no_persons_on_ISS">No persons on ISS right now</string>
 </resources>
