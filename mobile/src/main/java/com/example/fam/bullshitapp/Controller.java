@@ -1,10 +1,7 @@
 package com.example.fam.bullshitapp;
 
 import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.Serializable;
-import java.lang.reflect.Array;
 import java.util.Random;
 
 /**
@@ -12,7 +9,7 @@ import java.util.Random;
  */
 public class Controller implements Serializable{
 
-    private String[] yesOptions = {"yes", "yeah", "hellyeah", "nodding", "nod", "yas", "hell yes", "sure", "hell to the yes"};
+    private String[] yesOptions = {"yes", "yeah", "hell yeah", "nodding", "nod", "yas", "hell yes", "sure", "hell to the yes"};
     private String[] noOptions = {"no", "hell no", "nope", "not happening", "oh honey no", "no bueno", "disgusted", "oh hell no",
     "hell to the no"};
 
