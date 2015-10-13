@@ -16,7 +16,7 @@ public class BuildUrl {
         return url;
     }
 
-    public static String getIssUrl() {
+    public static String getIssUrlPosition() {
         return "http://api.open-notify.org/iss-now.json";
     }
 

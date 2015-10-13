@@ -2,6 +2,7 @@ package com.example.fam.bullshitapp;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -9,6 +10,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
+
+import com.google.android.gms.maps.model.LatLng;
 
 public class MainActivity extends Activity implements RecyclerAdapter.ClickListener {
 
@@ -64,6 +67,7 @@ public class MainActivity extends Activity implements RecyclerAdapter.ClickListe
                 break;
         }
         if (intent != null) {
+            intent.putExtra("controller", controller);
             startActivity(intent);
         } else {
             Toast.makeText(this, "There is some problem", Toast.LENGTH_SHORT).show();

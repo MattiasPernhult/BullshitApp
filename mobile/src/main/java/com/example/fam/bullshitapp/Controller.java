@@ -1,13 +1,15 @@
 package com.example.fam.bullshitapp;
 
+import com.google.android.gms.maps.model.LatLng;
 import org.json.JSONException;
 import java.io.Serializable;
 import java.util.Random;
 
+
 /**
  * Created by mattiaspernhult on 2015-10-13.
  */
-public class Controller implements Serializable{
+public class Controller implements Serializable {
 
     private String[] yesOptions = {"yes", "yeah", "hell yeah", "nodding", "nod", "yas", "hell yes", "sure", "hell to the yes"};
     private String[] noOptions = {"no", "hell no", "nope", "not happening", "oh honey no", "no bueno", "disgusted", "oh hell no",
@@ -16,6 +18,21 @@ public class Controller implements Serializable{
 
     public Controller() {
 
+    }
+
+    public LatLng getISSPosition() {
+        String response = HttpManager.getData(BuildUrl.getIssUrlPosition());
+        if (response != null) {
+            try {
+                JSONObject jsonObject = new JSONObject(response);
+                JSONObject position = jsonObject.getJSONObject("iss_position");
+                LatLng latLng = new LatLng(position.getDouble("latitude"), position.getDouble("longitude"));
+                return latLng;
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
     }
 
     public String getGiphy() {
