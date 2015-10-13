@@ -36,13 +36,13 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
     public void onBindViewHolder(MyViewHolder holder, int position) {
         switch (position) {
             case 0:
-                holder.imageView.setImageResource(R.mipmap.baloo);
+                holder.imageView.setImageResource(R.drawable.space_man);
                 break;
             case 1:
-                holder.imageView.setImageResource(R.mipmap.baloo);
+                holder.imageView.setImageResource(R.drawable.yoda);
                 break;
             case 2:
-                holder.imageView.setImageResource(R.mipmap.baloo);
+                holder.imageView.setImageResource(R.drawable.ask);
                 break;
         }
     }
