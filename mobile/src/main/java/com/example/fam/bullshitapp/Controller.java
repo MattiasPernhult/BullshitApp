@@ -1,7 +1,11 @@
 package com.example.fam.bullshitapp;
 
+import android.util.Log;
+
 import com.google.android.gms.maps.model.LatLng;
 import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.Serializable;
 import java.util.Random;
 
@@ -11,9 +15,9 @@ import java.util.Random;
  */
 public class Controller implements Serializable {
 
-    private String[] yesOptions = {"yes", "yeah", "hell yeah", "nodding", "nod", "yas", "hell yes", "sure", "hell to the yes"};
-    private String[] noOptions = {"no", "hell no", "nope", "not happening", "oh honey no", "no bueno", "disgusted", "oh hell no",
-    "hell to the no"};
+    private String[] yesOptions = {"yes", "yeah", "hell+yeah", "nodding", "nod", "yas", "hell+yes", "sure", "hell+to+the+yes"};
+    private String[] noOptions = {"no", "hell+no", "nope", "not+happening", "oh+honey+no", "no+bueno", "disgusted", "oh+hell+no",
+    "hell+to+the+no"};
 
 
     public Controller() {
@@ -49,14 +53,18 @@ public class Controller implements Serializable {
             if (answer.equals("yes")){
                 String yes = yesOptions[random.nextInt(yesOptions.length - 1)];
                 String giphyUrl = BuildUrl.getGiphyUrl(yes);
+                Log.d("Controller", giphyUrl);
                 String giphyResult = HttpManager.getData(giphyUrl);
                 String imageUrl = null;
-                try {
-                    imageUrl = JsonParser.parseGiphy(giphyResult);
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                if (giphyResult != null){
+                    try {
+                        imageUrl = JsonParser.parseGiphy(giphyResult);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    return imageUrl;
                 }
-                return imageUrl;
+                return null;
             }
             else{
                 String no = noOptions[random.nextInt(noOptions.length - 1)];

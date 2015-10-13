@@ -8,7 +8,7 @@ import com.example.fam.bullshitapp.credentials.ApiKeys;
 public class BuildUrl {
 
     public static String getYesOrNoUrl(){
-        return "www.yesno.wtf/api";
+        return "http://www.yesno.wtf/api";
     }
 
     public static String getGiphyUrl(String query){
