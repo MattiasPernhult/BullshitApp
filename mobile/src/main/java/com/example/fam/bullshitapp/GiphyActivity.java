@@ -13,6 +13,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 
 import com.felipecsl.gifimageview.library.GifImageView;
 
@@ -26,11 +28,15 @@ import java.nio.ByteBuffer;
 
 public class GiphyActivity extends Activity {
 
+    // TODO: Add Toast message with some funny message dependin of the answer (either yes or no)
+
     private Controller controller;
     private GifImageView gifImageView;
     private EditText etQuestion;
     private Button btnAskQuestion;
     private byte[] gifImageInBytes;
+    private ProgressBar progressBar;
+    private LinearLayout container;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +44,12 @@ public class GiphyActivity extends Activity {
         setContentView(R.layout.activity_giphy);
 
         gifImageView = (GifImageView) findViewById(R.id.gifImageView);
+
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        progressBar.setVisibility(ProgressBar.INVISIBLE);
+
+        container = (LinearLayout) findViewById(R.id.container);
+        container.setVisibility(View.VISIBLE);
 
         /*
         gifImageView.setOnFrameAvailable(new GifImageView.OnFrameAvailable() {
@@ -56,24 +68,13 @@ public class GiphyActivity extends Activity {
         Intent intent = getIntent();
 
         controller = (Controller) intent.getSerializableExtra("controller");
-
-        if (controller != null) {
-            new MyTask().execute();
-        }
     }
 
     private void setButtonListener() {
         btnAskQuestion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: Skicka fråga till sentence-analyzer och kolla ifall det är en fråga, om det är det så sätt GIF:en.
-                if (gifImageInBytes != null) {
-                    Log.d("GiphyActivity", "imageData är inte null");
-                    gifImageView.setBytes(gifImageInBytes);
-                    gifImageView.startAnimation();
-                } else {
-                    Log.d("GiphyActivity", "imageData är null");
-                }
+                new MyTask().execute();
             }
         });
     }
@@ -100,7 +101,16 @@ public class GiphyActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    private class MyTask extends AsyncTask<String, String, Void>{
+    private class MyTask extends AsyncTask<String, String, byte[]>{
+
+        @Override
+        protected void onPreExecute() {
+            btnAskQuestion.setEnabled(false);
+            progressBar.setVisibility(ProgressBar.VISIBLE);
+            Log.d("GiphyActivity", "background: " + container.getAlpha());
+            container.setAlpha(0.2f);
+            gifImageView.stopAnimation();
+        }
 
         private byte[] getByteArrayFromUrl(String url) throws Exception {
             if (url == null) {
@@ -110,17 +120,25 @@ public class GiphyActivity extends Activity {
         }
 
         @Override
-        protected Void doInBackground(String... params) {
+        protected byte[] doInBackground(String... params) {
             String gifUrl = controller.getGiphy();
             Log.d("GiphyActivity", gifUrl.toString());
             try {
-                byte[] byteImage = getByteArrayFromUrl(gifUrl);
-                gifImageInBytes = byteImage;
+                return getByteArrayFromUrl(gifUrl);
             } catch (Exception e) {
                 e.printStackTrace();
                 Log.d("GiphyActivity", e.getMessage());
+                return null;
             }
-            return null;
+        }
+
+        @Override
+        protected void onPostExecute(byte[] imageByte) {
+            btnAskQuestion.setEnabled(true);
+            progressBar.setVisibility(ProgressBar.INVISIBLE);
+            container.setAlpha(1.0f);
+            gifImageView.setBytes(imageByte);
+            gifImageView.startAnimation();
         }
     }
 }

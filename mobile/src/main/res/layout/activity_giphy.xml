@@ -1,31 +1,44 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:orientation="vertical"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.example.fam.bullshitapp.GiphyActivity">
+
+    <LinearLayout
+        android:id="@+id/container"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
 
     <com.felipecsl.gifimageview.library.GifImageView
         android:id="@+id/gifImageView"
-        android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_marginBottom="15dp"
-        />
+        android:layout_gravity="center"
+        android:layout_marginBottom="15dp" />
 
     <EditText
         android:id="@+id/etQuestion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="7dp"
-        />
+        android:layout_marginBottom="7dp" />
+
     <Button
         android:id="@+id/btnAskQuestion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/btnAskQuestion"
-        />
+        android:text="@string/btnAskQuestion" />
 
-</LinearLayout>
+    </LinearLayout>
+
+    <ProgressBar
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/progressBar"
+        android:layout_gravity="center_horizontal" />
+
+</FrameLayout>
