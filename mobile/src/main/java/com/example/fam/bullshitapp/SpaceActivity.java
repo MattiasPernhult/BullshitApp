@@ -13,6 +13,7 @@ import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -97,7 +98,7 @@ public class SpaceActivity extends FragmentActivity {
 
     private void addMarker(LatLng latLng, String title, String desc) {
         mMap.clear();
-        mMap.addMarker(new MarkerOptions().position(latLng).title(title).snippet(desc));
+        mMap.addMarker(new MarkerOptions().position(latLng).title(title).snippet(desc).icon(BitmapDescriptorFactory.fromResource(R.mipmap.iss_icon)));
         latLngList.add(latLng);
         mMap.addPolyline(new PolylineOptions().addAll(latLngList).color(Color.RED).width(10).geodesic(true));
         CameraUpdate update = CameraUpdateFactory.newLatLngZoom(latLng, 5);
