@@ -26,7 +26,7 @@ public class Controller implements Serializable {
     private String[] yesOptions = {"yes", "yeah", "hell+yeah", "nodding", "nod", "yas", "hell+yes", "sure", "hell+to+the+yes"};
     private String[] yoda = {"Yoda", "Yoda"};
     private String[] noOptions = {"no", "hell+no", "nope", "not+happening", "oh+honey+no", "no+bueno", "disgusted", "oh+hell+no",
-    "hell+to+the+no"};
+    "hell+to+the+no", "nein"};
 
 
     public Controller() {

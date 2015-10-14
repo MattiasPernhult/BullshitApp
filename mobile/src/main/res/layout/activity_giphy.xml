@@ -1,4 +1,5 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fbutton="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -6,39 +7,45 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.fam.bullshitapp.GiphyActivity">
+    tools:context="com.example.fam.bullshitapp.GiphyActivity"
+    >
 
     <LinearLayout
         android:id="@+id/container"
-        android:orientation="vertical"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
 
-    <com.felipecsl.gifimageview.library.GifImageView
-        android:id="@+id/gifImageView"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_gravity="center"
-        android:layout_marginBottom="15dp" />
+        <com.felipecsl.gifimageview.library.GifImageView
+            android:id="@+id/gifImageView"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="15dp" />
 
-    <EditText
-        android:id="@+id/etQuestion"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="7dp" />
+        <EditText
+            android:id="@+id/etQuestion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="7dp" />
 
-    <Button
-        android:id="@+id/btnAskQuestion"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/btnAskQuestion" />
+        <info.hoang8f.widget.FButton
+            android:id="@+id/btnAskQuestion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btnAskQuestion"
+            fbutton:buttonColor="@color/fbutton_color_turquoise"
+            fbutton:cornerRadius="5dp"
+            fbutton:shadowColor="@color/fbutton_color_green_sea"
+            fbutton:shadowEnabled="true"
+            fbutton:shadowHeight="5dp" />
 
     </LinearLayout>
 
     <ProgressBar
+        android:id="@+id/progressBar"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:id="@+id/progressBar"
         android:layout_gravity="center_horizontal" />
 
 </FrameLayout>
