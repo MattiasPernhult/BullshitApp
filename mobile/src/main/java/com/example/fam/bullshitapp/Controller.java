@@ -23,10 +23,9 @@ import java.util.Random;
  */
 public class Controller implements Serializable {
 
-    private String[] yesOptions = {"yes", "yeah", "hell+yeah", "nodding", "nod", "yas", "hell+yes", "sure", "hell+to+the+yes"};
+    private String[] yesOptions = {"yes", "nodding", "maybe", "nod", "hell+yes", "sure", "absolutely", "YES"};
     private String[] yoda = {"Yoda", "Yoda"};
-    private String[] noOptions = {"no", "hell+no", "nope", "not+happening", "oh+honey+no", "no+bueno", "disgusted", "oh+hell+no",
-    "hell+to+the+no", "nein"};
+    private String[] noOptions = {"no", "hell+no", "nope", "maybe", "oh+honey+no", "oh+hell+no", "nein", "fuck+you"};
 
 
     public Controller() {

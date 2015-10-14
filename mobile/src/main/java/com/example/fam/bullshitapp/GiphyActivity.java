@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.felipecsl.gifimageview.library.GifImageView;
 
@@ -74,7 +75,11 @@ public class GiphyActivity extends Activity {
         btnAskQuestion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new MyTask().execute();
+                if (etQuestion.getText().length() <= 0){
+                    Toast.makeText(GiphyActivity.this, "You must ask a question!", Toast.LENGTH_SHORT).show();
+                }else{
+                    new MyTask().execute();
+                }
             }
         });
     }
@@ -137,6 +142,11 @@ public class GiphyActivity extends Activity {
             btnAskQuestion.setEnabled(true);
             progressBar.setVisibility(ProgressBar.INVISIBLE);
             container.setAlpha(1.0f);
+            if (imageByte == null){
+                Toast.makeText(GiphyActivity.this, "Oops, your mother blocked this content, try again!", Toast.LENGTH_LONG);
+                gifImageView.startAnimation();
+                return;
+            }
             gifImageView.setBytes(imageByte);
             gifImageView.startAnimation();
         }

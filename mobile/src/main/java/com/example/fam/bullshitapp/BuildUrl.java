@@ -20,7 +20,7 @@ public class BuildUrl {
     }
 
     public static String getGiphyUrl(String query){
-        String url = "http://api.giphy.com/v1/gifs/search?q=" + query + "&api_key=" + ApiKeys.giphyKey;
+        String url = "http://api.giphy.com/v1/gifs/search?q=" + query + "&api_key=" + ApiKeys.giphyKey + "&limit=100";
         return url;
     }
 
