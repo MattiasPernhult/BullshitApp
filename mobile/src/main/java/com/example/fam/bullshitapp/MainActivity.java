@@ -1,14 +1,17 @@
 package com.example.fam.bullshitapp;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -43,6 +46,11 @@ public class MainActivity extends Activity implements RecyclerAdapter.ClickListe
         RecyclerAdapter adapter = new RecyclerAdapter(this);
         adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
+
+        NetworkChangeReceiver receiver = new NetworkChangeReceiver();
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
+        registerReceiver(receiver, intentFilter);
     }
 
     /*
@@ -86,6 +94,19 @@ public class MainActivity extends Activity implements RecyclerAdapter.ClickListe
                 toast.cancel();
                 toast.makeText(this, "To perform this action, the device must be connected to the internet.", Toast.LENGTH_LONG).show();
             }
+        }
+    }
+
+    private class NetworkChangeReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(final Context context, final Intent intent) {
+            if (controller.isOnline(MainActivity.this)) {
+                hasInternet = true;
+            } else {
+                hasInternet = false;
+            }
+            Log.d("MainActivity", "internet: " + hasInternet);
         }
     }
 }
