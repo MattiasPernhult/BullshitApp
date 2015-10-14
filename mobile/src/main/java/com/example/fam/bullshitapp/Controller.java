@@ -47,6 +47,23 @@ public class Controller implements Serializable {
         return null;
     }
 
+    public String getYodaText() {
+
+        String adviceResponse = HttpManager.getData(BuildUrl.getAdviceUrl());
+
+        try {
+            JSONObject jsonObject = new JSONObject(adviceResponse);
+            JSONObject slip = jsonObject.getJSONObject("slip");
+            String advice = slip.getString("advice");
+            String yodaResponse = HttpManager.getDataForYoda(BuildUrl.getYodaUrl(advice));
+            Log.d("YodaActivity", "Yoda says: " + yodaResponse);
+            return yodaResponse;
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public ArrayList<String> getISSPersons() {
         String response = HttpManager.getData(BuildUrl.getIssUrlPersons());
         if (response != null) {

@@ -1,6 +1,14 @@
 package com.example.fam.bullshitapp;
 
+import android.util.Log;
+
 import com.example.fam.bullshitapp.credentials.ApiKeys;
+
+import org.apache.http.client.utils.URIUtils;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URI;
+import java.net.URLDecoder;
 
 /**
  * Created by mattiaspernhult on 2015-10-13.
@@ -22,5 +30,18 @@ public class BuildUrl {
 
     public static String getIssUrlPersons() {
         return "http://api.open-notify.org/astros.json";
+    }
+
+    public static String getAdviceUrl() {
+        return "http://api.adviceslip.com/advice";
+    }
+
+    public static String getYodaUrl(String advice) {
+        String hello = "https://yoda.p.mashape.com/yoda?sentence=" + advice;
+        hello = hello.replace(' ', '+');
+        URI uri = URI.create(hello);
+        String validURLString = uri.toASCIIString();
+        Log.d("YodaActivity", validURLString);
+        return validURLString;
     }
 }
