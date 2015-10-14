@@ -23,6 +23,7 @@ import java.util.Random;
 public class Controller implements Serializable {
 
     private String[] yesOptions = {"yes", "yeah", "hell+yeah", "nodding", "nod", "yas", "hell+yes", "sure", "hell+to+the+yes"};
+    private String[] yoda = {"Yoda", "Yoda"};
     private String[] noOptions = {"no", "hell+no", "nope", "not+happening", "oh+honey+no", "no+bueno", "disgusted", "oh+hell+no",
     "hell+to+the+no", "nein"};
 
@@ -56,6 +57,9 @@ public class Controller implements Serializable {
             JSONObject slip = jsonObject.getJSONObject("slip");
             String advice = slip.getString("advice");
             String yodaResponse = HttpManager.getDataForYoda(BuildUrl.getYodaUrl(advice));
+            if (yodaResponse == null) {
+                return advice;
+            }
             Log.d("YodaActivity", "Yoda says: " + yodaResponse);
             return yodaResponse;
         } catch (JSONException e) {
@@ -116,4 +120,13 @@ public class Controller implements Serializable {
         return null;
     }
 
+    public String getYodaGiphy() {
+        try {
+            String giphyUrl = getGiphyFromAnswer(yoda);
+            return giphyUrl;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

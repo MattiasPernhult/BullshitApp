@@ -28,6 +28,8 @@ public class SpaceActivity extends FragmentActivity {
     private Controller controller;
     private ReceiveISSPosition receiveISSPosition;
     private List<LatLng> latLngList;
+    private MarkerOptions markerOptions;
+    private PolylineOptions polylineOptions;
 
 
     @Override
@@ -98,9 +100,9 @@ public class SpaceActivity extends FragmentActivity {
 
     private void addMarker(LatLng latLng, String title, String desc) {
         mMap.clear();
-        mMap.addMarker(new MarkerOptions().position(latLng).title(title).snippet(desc).icon(BitmapDescriptorFactory.fromResource(R.mipmap.iss_icon)));
+        mMap.addMarker(new MarkerOptions().title(title).snippet(desc).icon(BitmapDescriptorFactory.fromResource(R.mipmap.iss_icon)).position(latLng));
         latLngList.add(latLng);
-        mMap.addPolyline(new PolylineOptions().addAll(latLngList).color(Color.RED).width(10).geodesic(true));
+        mMap.addPolyline(new PolylineOptions().color(Color.RED).width(10).geodesic(true).addAll(latLngList));
         CameraUpdate update = CameraUpdateFactory.newLatLngZoom(latLng, 5);
         mMap.animateCamera(update);
     }
