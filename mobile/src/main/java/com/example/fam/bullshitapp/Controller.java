@@ -69,50 +69,34 @@ public class Controller implements Serializable {
         return null;
     }
 
-    public String getGiphy() {
+    private String getGiphyFromAnswer(String[] options) throws Exception {
         Random random = new Random();
-        String yesOrNoUrl = BuildUrl.getYesOrNoUrl();
-        String yesNoResult = HttpManager.getData(yesOrNoUrl);
-        if (yesNoResult != null){
-            String answer = null;
+        String answer = options[random.nextInt(options.length - 1)];
+        String giphyUrl = BuildUrl.getGiphyUrl(answer);
+        String giphyResult = HttpManager.getData(giphyUrl);
+        if (giphyResult != null){
+            return JsonParser.parseGiphy(giphyResult);
+        }
+        return null;
+    }
+
+    public String getGiphy() {
+        String yesNoResult = HttpManager.getData(BuildUrl.getYesOrNoUrl());
+        if (yesNoResult != null) {
             try {
-                answer = JsonParser.parseYesOrNo(yesNoResult);
-            } catch (JSONException e) {
+                String answer = JsonParser.parseYesOrNo(yesNoResult);
+                String giphyUrl;
+                if (answer.equals("yes")) {
+                    giphyUrl = getGiphyFromAnswer(yesOptions);
+                } else {
+                    giphyUrl = getGiphyFromAnswer(noOptions);
+                }
+                return giphyUrl;
+            } catch (Exception e) {
                 e.printStackTrace();
             }
-            if (answer.equals("yes")){
-                String yes = yesOptions[random.nextInt(yesOptions.length - 1)];
-                String giphyUrl = BuildUrl.getGiphyUrl(yes);
-                Log.d("Controller", giphyUrl);
-                String giphyResult = HttpManager.getData(giphyUrl);
-                String imageUrl = null;
-                if (giphyResult != null){
-                    try {
-                        imageUrl = JsonParser.parseGiphy(giphyResult);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                    return imageUrl;
-                }
-                return null;
-            }
-            else{
-                String no = noOptions[random.nextInt(noOptions.length - 1)];
-                String giphyUrl = BuildUrl.getGiphyUrl(no);
-                String giphyResult = HttpManager.getData(giphyUrl);
-                String imageUrl = null;
-                try {
-                    imageUrl = JsonParser.parseGiphy(giphyResult);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                return imageUrl;
-            }
         }
-        else{
-            return null;
-        }
-
+        return null;
     }
 
 }

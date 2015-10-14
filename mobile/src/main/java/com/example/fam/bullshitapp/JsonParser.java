@@ -1,5 +1,7 @@
 package com.example.fam.bullshitapp;
 
+import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -11,20 +13,30 @@ import java.util.Random;
  */
 public class JsonParser {
 
-    public static String parseYesOrNo(String json) throws JSONException {
-        JSONObject jsonObject = new JSONObject(json);
-        String answer = jsonObject.getString("answer");
-        return answer;
+    public static String parseYesOrNo(String json) {
+        try {
+            JSONObject jsonObject = new JSONObject(json);
+            String answer = jsonObject.getString("answer");
+            return answer;
+        } catch (JSONException e) {
+            Log.d("JsonParser", e.getMessage());
+            return null;
+        }
     }
 
-    public static String parseGiphy(String json) throws JSONException {
-        Random random = new Random();
-        JSONObject jsonRootObject = new JSONObject(json);
-        JSONArray array = jsonRootObject.getJSONArray("data");
-        JSONObject jsonObject = array.getJSONObject(random.nextInt(array.length() - 1));
-        JSONObject images = jsonObject.getJSONObject("images");
-        JSONObject specificImage = images.getJSONObject("original");
-        String imageUrl = specificImage.getString("url");
-        return imageUrl;
+    public static String parseGiphy(String json) {
+        try {
+            Random random = new Random();
+            JSONObject jsonRootObject = new JSONObject(json);
+            JSONArray array = jsonRootObject.getJSONArray("data");
+            JSONObject jsonObject = array.getJSONObject(random.nextInt(array.length() - 1));
+            JSONObject images = jsonObject.getJSONObject("images");
+            JSONObject specificImage = images.getJSONObject("original");
+            String imageUrl = specificImage.getString("url");
+            return imageUrl;
+        } catch (JSONException e) {
+            Log.d("JsonParser", e.getMessage());
+            return null;
+        }
     }
 }
