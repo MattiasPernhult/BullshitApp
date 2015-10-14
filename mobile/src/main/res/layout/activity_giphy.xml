@@ -27,7 +27,8 @@
             android:id="@+id/etQuestion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="7dp" />
+            android:layout_marginBottom="7dp"
+            android:textColor="#000"/>
 
         <info.hoang8f.widget.FButton
             android:id="@+id/btnAskQuestion"
