@@ -37,10 +37,9 @@ public class BuildUrl {
     }
 
     public static String getYodaUrl(String advice) {
-        String hello = "https://yoda.p.mashape.com/yoda?sentence=" + advice;
-        hello = hello.replace(' ', '+');
-        URI uri = URI.create(hello);
-        String validURLString = uri.toASCIIString();
+        String validURLString = "https://yoda.p.mashape.com/yoda?sentence=" + advice;
+        validURLString = validURLString.replace(' ', '+');
+        validURLString = validURLString.replace('"', '\'');
         Log.d("YodaActivity", validURLString);
         return validURLString;
     }
