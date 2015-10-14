@@ -39,4 +39,5 @@ dependencies {
     compile 'com.felipecsl:gifimageview:1.2.0'
     compile 'com.squareup.okhttp:okhttp:2.1.0'
     compile 'commons-io:commons-io:+'
+    compile 'info.hoang8f:fbutton:1.0.5'
 }
