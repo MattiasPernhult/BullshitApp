@@ -1,5 +1,7 @@
 package com.example.fam.bullshitapp;
 
+import android.util.Log;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -10,6 +12,40 @@ import java.net.URL;
  * Created by mattiaspernhult on 2015-10-13.
  */
 public class HttpManager {
+
+    public static String getDataForYoda(String uri) {
+        BufferedReader reader = null;
+
+        try {
+            URL url = new URL(uri);
+
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+            conn.setRequestMethod("GET");
+            conn.setRequestProperty("X-Mashape-Key", "BeQJpREnztmshfAxq4njpueNmKj7p1qANaujsnLZza2aoISk5K");
+            conn.setRequestProperty("Content-Type", "text/plain");
+
+            StringBuilder sb = new StringBuilder();
+            reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+
+            String line;
+            while ((line = reader.readLine()) != null)
+                sb.append(line + "\n");
+            Log.d("YodaActivity", sb.toString());
+            return sb.toString();
+        } catch (Exception e) {
+            return null;
+        } finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    return null;
+                }
+            }
+        }
+    }
 
     public static String getData(String uri) {
         BufferedReader reader = null;
