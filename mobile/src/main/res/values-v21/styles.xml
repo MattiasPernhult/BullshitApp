@@ -3,6 +3,7 @@
     <style name="AppTheme" parent="android:Theme.Material.Light">
         <item name="android:colorPrimary">#007090</item>
         <item name="android:colorPrimaryDark">#12505E</item>
-        <item name="android:navigationBarColor">#007090</item>
+        <item name="android:navigationBarColor">#E0E0E0</item>
+        <item name="android:textColorPrimary">#FFF</item>
     </style>
 </resources>
