@@ -1,7 +1,10 @@
 package com.example.fam.bullshitapp;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,12 +19,21 @@ import com.google.android.gms.maps.model.LatLng;
 public class MainActivity extends Activity implements RecyclerAdapter.ClickListener {
 
     private Controller controller;
+    private boolean hasInternet;
+    private Toast toast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         controller = new Controller();
+
+        toast = new Toast(this);
+
+        hasInternet = controller.isOnline(this);
+        if (!hasInternet) {
+            toast.makeText(this, "In order to use this app, you must turn on internet.", Toast.LENGTH_LONG).show();
+        }
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
@@ -68,9 +80,12 @@ public class MainActivity extends Activity implements RecyclerAdapter.ClickListe
         }
         if (intent != null) {
             intent.putExtra("controller", controller);
-            startActivity(intent);
-        } else {
-            Toast.makeText(this, "There is some problem", Toast.LENGTH_SHORT).show();
+            if (hasInternet) {
+                startActivity(intent);
+            } else {
+                toast.cancel();
+                toast.makeText(this, "To perform this action, the device must be connected to the internet.", Toast.LENGTH_LONG).show();
+            }
         }
     }
 }
