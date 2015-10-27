@@ -23,7 +23,7 @@ import java.util.Random;
  */
 public class Controller implements Serializable {
 
-    private String[] yoda = {"Yoda", "yoda"};
+    private String[] yoda = {"Yoda", "Yoda"};
     private String[] yesOptions = {"yes", "YES"};
     private String[] noOptions = {"no", "NO"};
 
@@ -98,13 +98,30 @@ public class Controller implements Serializable {
         return null;
     }
 
-    private String getGiphyFromAnswer(String[] options) throws Exception {
+    private String getGiphyFromAnswer(String[] options, boolean yoda) throws Exception {
+        boolean multi = true;
         Random random = new Random();
         String answer = options[random.nextInt(options.length - 1)];
-        String giphyUrl = BuildUrl.getGiphyUrl(answer);
+        String giphyUrl;
+        if (yoda) {
+            int x = random.nextInt(1000);
+            if (x % 10 == 0) {
+                giphyUrl = BuildUrl.getGiphy();
+                multi = false;
+            } else {
+                giphyUrl = BuildUrl.getGiphyUrlYoda(answer);
+            }
+            Log.d("MainActivity", giphyUrl);
+        } else {
+            giphyUrl = BuildUrl.getGiphyUrl(answer);
+        }
         String giphyResult = HttpManager.getData(giphyUrl);
-        if (giphyResult != null){
-            return JsonParser.parseGiphy(giphyResult);
+        if (giphyResult != null) {
+            if (multi) {
+                return JsonParser.parseGiphy(giphyResult);
+            } else {
+                return JsonParser.parseGiphySingle(giphyResult);
+            }
         }
         return null;
     }
@@ -116,9 +133,9 @@ public class Controller implements Serializable {
                 String answer = JsonParser.parseYesOrNo(yesNoResult);
                 String giphyUrl;
                 if (answer.equals("yes")) {
-                    giphyUrl = getGiphyFromAnswer(yesOptions);
+                    giphyUrl = getGiphyFromAnswer(yesOptions, false);
                 } else {
-                    giphyUrl = getGiphyFromAnswer(noOptions);
+                    giphyUrl = getGiphyFromAnswer(noOptions, false);
                 }
                 return giphyUrl;
             } catch (Exception e) {
@@ -130,7 +147,7 @@ public class Controller implements Serializable {
 
     public String getYodaGiphy() {
         try {
-            String giphyUrl = getGiphyFromAnswer(yoda);
+            String giphyUrl = getGiphyFromAnswer(yoda, true);
             return giphyUrl;
         } catch (Exception e) {
             e.printStackTrace();

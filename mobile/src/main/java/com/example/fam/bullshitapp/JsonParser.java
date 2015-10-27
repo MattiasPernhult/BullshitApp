@@ -39,4 +39,19 @@ public class JsonParser {
             return null;
         }
     }
+
+    public static String parseGiphySingle(String json) {
+        try {
+            Random random = new Random();
+            JSONObject jsonRootObject = new JSONObject(json);
+            JSONObject data = jsonRootObject.getJSONObject("data");
+            JSONObject images = data.getJSONObject("images");
+            JSONObject specificImage = images.getJSONObject("original");
+            String imageUrl = specificImage.getString("url");
+            return imageUrl;
+        } catch (JSONException e) {
+            Log.d("JsonParser", e.getMessage());
+            return null;
+        }
+    }
 }

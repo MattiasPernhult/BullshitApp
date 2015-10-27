@@ -24,6 +24,15 @@ public class BuildUrl {
         return url;
     }
 
+    public static String getGiphyUrlYoda(String query){
+        String url = "http://api.giphy.com/v1/gifs/search?q=" + query + "&api_key=" + ApiKeys.giphyKey + "&limit=20";
+        return url;
+    }
+
+    public static String getGiphy(){
+        return "http://api.giphy.com/v1/gifs/lzLaI8UybeNy0" + "?api_key=" + ApiKeys.giphyKey;
+    }
+
     public static String getIssUrlPosition() {
         return "http://api.open-notify.org/iss-now.json";
     }
