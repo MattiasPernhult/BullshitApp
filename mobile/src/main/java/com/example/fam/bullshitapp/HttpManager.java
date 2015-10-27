@@ -2,6 +2,8 @@ package com.example.fam.bullshitapp;
 
 import android.util.Log;
 
+import com.example.fam.bullshitapp.credentials.ApiKeys;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -22,7 +24,7 @@ public class HttpManager {
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
             conn.setRequestMethod("GET");
-            conn.setRequestProperty("X-Mashape-Key", "BeQJpREnztmshfAxq4njpueNmKj7p1qANaujsnLZza2aoISk5K");
+            conn.setRequestProperty("X-Mashape-Key", ApiKeys.mashapeKey);
             conn.setRequestProperty("Content-Type", "text/plain");
 
             StringBuilder sb = new StringBuilder();

@@ -157,7 +157,6 @@ public class SpaceActivity extends FragmentActivity {
         @Override
         public void run() {
             while (run) {
-                Log.d("SpaceActivity", "Körs fortfarande");
                 final LatLng latLng = controller.getISSPosition();
                 runOnUiThread(new Runnable() {
                     @Override

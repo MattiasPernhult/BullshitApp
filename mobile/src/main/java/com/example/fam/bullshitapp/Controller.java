@@ -68,7 +68,6 @@ public class Controller implements Serializable {
             if (yodaResponse == null) {
                 return advice;
             }
-            Log.d("YodaActivity", "Yoda says: " + yodaResponse);
             return yodaResponse;
         } catch (JSONException e) {
             e.printStackTrace();
@@ -111,7 +110,6 @@ public class Controller implements Serializable {
             } else {
                 giphyUrl = BuildUrl.getGiphyUrlYoda(answer);
             }
-            Log.d("MainActivity", giphyUrl);
         } else {
             giphyUrl = BuildUrl.getGiphyUrl(answer);
         }

@@ -49,7 +49,6 @@ public class BuildUrl {
         String validURLString = "https://yoda.p.mashape.com/yoda?sentence=" + advice;
         validURLString = validURLString.replace(' ', '+');
         validURLString = validURLString.replace('"', '\'');
-        Log.d("YodaActivity", validURLString);
         return validURLString;
     }
 }

@@ -19,7 +19,6 @@ public class JsonParser {
             String answer = jsonObject.getString("answer");
             return answer;
         } catch (JSONException e) {
-            Log.d("JsonParser", e.getMessage());
             return null;
         }
     }
@@ -35,7 +34,6 @@ public class JsonParser {
             String imageUrl = specificImage.getString("url");
             return imageUrl;
         } catch (JSONException e) {
-            Log.d("JsonParser", e.getMessage());
             return null;
         }
     }
@@ -50,7 +48,6 @@ public class JsonParser {
             String imageUrl = specificImage.getString("url");
             return imageUrl;
         } catch (JSONException e) {
-            Log.d("JsonParser", e.getMessage());
             return null;
         }
     }

@@ -106,7 +106,6 @@ public class MainActivity extends Activity implements RecyclerAdapter.ClickListe
             } else {
                 hasInternet = false;
             }
-            Log.d("MainActivity", "internet: " + hasInternet);
         }
     }
 }

@@ -6,6 +6,7 @@ package com.example.fam.bullshitapp.credentials;
 public class ApiKeys {
 
     public static String giphyKey = "dc6zaTOxFJmzC";
+    public static String mashapeKey = "BeQJpREnztmshfAxq4njpueNmKj7p1qANaujsnLZza2aoISk5K";
 
 
 }

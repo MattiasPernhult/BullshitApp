@@ -112,7 +112,6 @@ public class GiphyActivity extends Activity {
         protected void onPreExecute() {
             btnAskQuestion.setEnabled(false);
             progressBar.setVisibility(ProgressBar.VISIBLE);
-            Log.d("GiphyActivity", "background: " + container.getAlpha());
             container.setAlpha(0.2f);
             gifImageView.stopAnimation();
         }
@@ -127,12 +126,10 @@ public class GiphyActivity extends Activity {
         @Override
         protected byte[] doInBackground(String... params) {
             String gifUrl = controller.getGiphy();
-            Log.d("GiphyActivity", gifUrl.toString());
             try {
                 return getByteArrayFromUrl(gifUrl);
             } catch (Exception e) {
                 e.printStackTrace();
-                Log.d("GiphyActivity", e.getMessage());
                 return null;
             }
         }
