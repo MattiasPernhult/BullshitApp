@@ -7,7 +7,11 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
+import android.view.animation.RotateAnimation;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -22,8 +26,10 @@ public class YodaActivity extends Activity {
     private Button btnNewAdvice;
     private byte[] giphyImageOnYoda;
     private String yodaText;
-    private ProgressBar progressBar;
+    //private ProgressBar progressBar;
     private LinearLayout container;
+    private Animation rotation;
+    private ImageView imYodaHead;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,9 +42,17 @@ public class YodaActivity extends Activity {
         gifImageView = (GifImageView) findViewById(R.id.gifImageViewYoda);
         textView = (TextView) findViewById(R.id.tvYodaText);
         btnNewAdvice = (Button) findViewById(R.id.btnNewAdvice);
-        progressBar = (ProgressBar) findViewById(R.id.progressBarYoda);
-        progressBar.setVisibility(ProgressBar.INVISIBLE);
+        //progressBar = (ProgressBar) findViewById(R.id.progressBarYoda);
+        //progressBar.setVisibility(ProgressBar.INVISIBLE);
         container = (LinearLayout) findViewById(R.id.containerYoda);
+        imYodaHead = (ImageView) findViewById(R.id.imYodaHead);
+        imYodaHead.setVisibility(View.INVISIBLE);
+
+        rotation = new RotateAnimation(0, 360, Animation.RELATIVE_TO_SELF, .5f,
+                Animation.RELATIVE_TO_SELF, .5f);
+        rotation.setInterpolator(new LinearInterpolator());
+        rotation.setRepeatCount(Animation.INFINITE);
+        rotation.setDuration(900);
 
         if (controller != null) {
             new MyTask().execute(Constants.GET_YODA);
@@ -62,7 +76,9 @@ public class YodaActivity extends Activity {
         protected void onPreExecute() {
             gifImageView.stopAnimation();
             container.setAlpha(0.2f);
-            progressBar.setVisibility(ProgressBar.VISIBLE);
+            //progressBar.setVisibility(ProgressBar.VISIBLE);
+            imYodaHead.setVisibility(View.VISIBLE);
+            imYodaHead.setAnimation(rotation);
         }
 
         @Override
@@ -82,7 +98,9 @@ public class YodaActivity extends Activity {
 
         @Override
         protected void onPostExecute(String yodaAdvice) {
-            progressBar.setVisibility(ProgressBar.INVISIBLE);
+            //progressBar.setVisibility(ProgressBar.INVISIBLE);
+            imYodaHead.clearAnimation();
+            imYodaHead.setVisibility(View.INVISIBLE);
             container.setAlpha(1.0f);
             gifImageView.setBytes(giphyImageOnYoda);
             gifImageView.startAnimation();

@@ -27,7 +27,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Hej mitt namn är Mattias och jag bor i Malmö."
             android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="#000"
@@ -46,10 +45,12 @@
 
     </LinearLayout>
 
-    <ProgressBar
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:id="@+id/progressBarYoda"
-        android:layout_gravity="center_horizontal" />
+    <ImageView
+        android:id="@+id/imYodaHead"
+        android:layout_width="200dip"
+        android:layout_height="200dip"
+        android:src="@mipmap/yoda_head"
+        android:layout_gravity="center_vertical|center_horizontal"
+        />
 
 </FrameLayout>
