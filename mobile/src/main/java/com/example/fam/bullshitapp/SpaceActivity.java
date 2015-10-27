@@ -30,6 +30,7 @@ public class SpaceActivity extends FragmentActivity {
     private List<LatLng> latLngList;
     private MarkerOptions markerOptions;
     private PolylineOptions polylineOptions;
+    private boolean first;
 
 
     @Override
@@ -50,6 +51,8 @@ public class SpaceActivity extends FragmentActivity {
             receiveISSPosition = new ReceiveISSPosition();
             new Thread(receiveISSPosition).start();
         }
+
+        first = true;
     }
 
     private void openInformationDialog(ArrayList<String> persons) {
@@ -83,6 +86,16 @@ public class SpaceActivity extends FragmentActivity {
     protected void onResume() {
         super.onResume();
         setUpMapIfNeeded();
+        if (controller != null) {
+            receiveISSPosition = new ReceiveISSPosition();
+            new Thread(receiveISSPosition).start();
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        receiveISSPosition.stop();
+        super.onPause();
     }
 
     @Override
@@ -104,7 +117,10 @@ public class SpaceActivity extends FragmentActivity {
         latLngList.add(latLng);
         mMap.addPolyline(new PolylineOptions().color(Color.RED).width(10).geodesic(true).addAll(latLngList));
         CameraUpdate update = CameraUpdateFactory.newLatLngZoom(latLng, 5);
-        mMap.animateCamera(update);
+        if (first) {
+            mMap.animateCamera(update);
+            first = false;
+        }
     }
 
     private class MyTask extends AsyncTask<String, String, ArrayList<String>> {
