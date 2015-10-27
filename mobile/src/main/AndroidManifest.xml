@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.fam.bullshitapp" >
+    package="com.fam.fam.bullshitapp" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -19,7 +19,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".MainActivity"
+            android:name="com.fam.fam.bullshitapp.MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -29,7 +29,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SpaceActivity"
+            android:name="com.fam.fam.bullshitapp.SpaceActivity"
             android:label="@string/title_activity_space"
             android:screenOrientation="portrait" >
         </activity>
@@ -42,12 +42,12 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".GiphyActivity"
+            android:name="com.fam.fam.bullshitapp.GiphyActivity"
             android:label="@string/title_activity_giphy"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".YodaActivity"
+            android:name="com.fam.fam.bullshitapp.YodaActivity"
             android:label="@string/title_activity_yoda"
             android:screenOrientation="portrait">
         </activity>

@@ -1,4 +1,4 @@
-package com.example.fam.bullshitapp;
+package com.fam.fam.bullshitapp;
 
 /**
  * Created by mattiaspernhult on 2015-10-13.

@@ -1,23 +1,16 @@
-package com.example.fam.bullshitapp;
+package com.fam.fam.bullshitapp;
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
-
-import com.google.android.gms.maps.model.LatLng;
 
 public class MainActivity extends Activity implements RecyclerAdapter.ClickListener {
 

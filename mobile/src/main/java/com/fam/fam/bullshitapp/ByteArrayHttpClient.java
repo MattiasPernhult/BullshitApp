@@ -1,10 +1,8 @@
-package com.example.fam.bullshitapp;
+package com.fam.fam.bullshitapp;
 
 /**
  * Created by Felix on 2015-10-13.
  */
-
-import android.util.Log;
 
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;

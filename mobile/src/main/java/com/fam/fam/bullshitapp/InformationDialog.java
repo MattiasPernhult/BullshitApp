@@ -1,4 +1,4 @@
-package com.example.fam.bullshitapp;
+package com.fam.fam.bullshitapp;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by mattiaspernhult on 2015-10-13.

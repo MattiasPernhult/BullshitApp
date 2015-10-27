@@ -1,14 +1,6 @@
-package com.example.fam.bullshitapp;
+package com.fam.fam.bullshitapp;
 
-import android.util.Log;
-
-import com.example.fam.bullshitapp.credentials.ApiKeys;
-
-import org.apache.http.client.utils.URIUtils;
-
-import java.io.UnsupportedEncodingException;
-import java.net.URI;
-import java.net.URLDecoder;
+import com.fam.fam.bullshitapp.credentials.ApiKeys;
 
 /**
  * Created by mattiaspernhult on 2015-10-13.

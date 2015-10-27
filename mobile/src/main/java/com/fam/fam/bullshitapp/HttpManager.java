@@ -1,8 +1,6 @@
-package com.example.fam.bullshitapp;
+package com.fam.fam.bullshitapp;
 
-import android.util.Log;
-
-import com.example.fam.bullshitapp.credentials.ApiKeys;
+import com.fam.fam.bullshitapp.credentials.ApiKeys;
 
 import java.io.BufferedReader;
 import java.io.IOException;

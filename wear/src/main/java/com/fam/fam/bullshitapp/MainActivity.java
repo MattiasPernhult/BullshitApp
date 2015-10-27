@@ -1,4 +1,4 @@
-package com.example.fam.bullshitapp;
+package com.fam.fam.bullshitapp;
 
 import android.app.Activity;
 import android.os.Bundle;

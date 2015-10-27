@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.fam.bullshitapp.YodaActivity">
+    tools:context="com.fam.fam.bullshitapp.YodaActivity">
 
     <LinearLayout
         android:id="@+id/containerYoda"
@@ -49,7 +49,7 @@
         android:id="@+id/imYodaHead"
         android:layout_width="200dip"
         android:layout_height="200dip"
-        android:src="@mipmap/yoda_head"
+        android:src="@mipmap/ic_yoda_head"
         android:layout_gravity="center_vertical|center_horizontal"
         />
 

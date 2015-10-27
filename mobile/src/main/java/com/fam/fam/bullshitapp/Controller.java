@@ -1,10 +1,8 @@
-package com.example.fam.bullshitapp;
+package com.fam.fam.bullshitapp;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.util.Log;
-import android.os.Build;
 
 
 import com.google.android.gms.maps.model.LatLng;

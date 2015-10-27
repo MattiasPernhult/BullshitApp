@@ -1,6 +1,4 @@
-package com.example.fam.bullshitapp;
-
-import android.util.Log;
+package com.fam.fam.bullshitapp;
 
 import org.json.JSONArray;
 import org.json.JSONException;
