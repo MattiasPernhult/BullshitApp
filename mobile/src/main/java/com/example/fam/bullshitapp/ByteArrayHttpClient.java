@@ -33,13 +33,13 @@ public class ByteArrayHttpClient {
             in = response.body().byteStream();
             return IOUtils.toByteArray(in);
         } catch (final MalformedURLException e) {
-            Log.d(TAG, "Malformed URL", e);
+
         } catch (final OutOfMemoryError e) {
-            Log.d(TAG, "Out of memory", e);
+
         } catch (final UnsupportedEncodingException e) {
-            Log.d(TAG, "Unsupported encoding", e);
+
         } catch (final IOException e) {
-            Log.d(TAG, "IO exception", e);
+
         } finally {
             if (in != null) {
                 try {

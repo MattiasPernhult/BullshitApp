@@ -33,7 +33,6 @@ public class HttpManager {
             String line;
             while ((line = reader.readLine()) != null)
                 sb.append(line + "\n");
-            Log.d("YodaActivity", sb.toString());
             return sb.toString();
         } catch (Exception e) {
             return null;
