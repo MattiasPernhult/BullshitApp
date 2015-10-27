@@ -28,9 +28,7 @@ import java.net.URL;
 import java.nio.ByteBuffer;
 
 public class GiphyActivity extends Activity {
-
-    // TODO: Add Toast message with some funny message dependin of the answer (either yes or no)
-
+    
     private Controller controller;
     private GifImageView gifImageView;
     private EditText etQuestion;
@@ -83,7 +81,7 @@ public class GiphyActivity extends Activity {
             }
         });
     }
-    
+
     private class MyTask extends AsyncTask<String, String, byte[]>{
 
         @Override
