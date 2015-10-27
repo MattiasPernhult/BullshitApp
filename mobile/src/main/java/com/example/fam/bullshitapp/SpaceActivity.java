@@ -49,7 +49,6 @@ public class SpaceActivity extends FragmentActivity {
 
         if (controller != null) {
             receiveISSPosition = new ReceiveISSPosition();
-            new Thread(receiveISSPosition).start();
         }
 
         first = true;
@@ -85,9 +84,12 @@ public class SpaceActivity extends FragmentActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        Log.d("MainActivity", "onResume");
         setUpMapIfNeeded();
         if (controller != null) {
-            receiveISSPosition = new ReceiveISSPosition();
+            if (receiveISSPosition == null) {
+                receiveISSPosition = new ReceiveISSPosition();
+            }
             new Thread(receiveISSPosition).start();
         }
     }
@@ -95,6 +97,7 @@ public class SpaceActivity extends FragmentActivity {
     @Override
     protected void onPause() {
         receiveISSPosition.stop();
+        Log.d("SpaceActivity", "onPause");
         super.onPause();
     }
 
@@ -152,11 +155,15 @@ public class SpaceActivity extends FragmentActivity {
 
         public void stop() {
             this.run = false;
+            Log.d("SpaceActivity", "run: " + run);
         }
 
         @Override
         public void run() {
-            while (run) {
+
+            this.run = true;
+            while (this.run) {
+                Log.d("SpaceActivity", "Körs fortfarande");
                 final LatLng latLng = controller.getISSPosition();
                 runOnUiThread(new Runnable() {
                     @Override
