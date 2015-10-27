@@ -20,6 +20,7 @@
     <color name="fbutton_color_silver">#bdc3c7</color>
     <color name="fbutton_color_concrete">#95a5a6</color>
     <color name="fbutton_color_asbestos">#7f8c8d</color>
-    <color name="colorPrimary">#16a085</color>
+    <color name="colorPrimary">#007090</color>
+    <color name="colorPrimaryDark">#12505E</color>
     <color name="light_grey_background">#F5F5F5</color>
 </resources>

@@ -28,7 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="7dp"
-            android:textColor="#000"/>
+            android:textColor="#FFF"/>
 
         <info.hoang8f.widget.FButton
             android:id="@+id/btnAskQuestion"

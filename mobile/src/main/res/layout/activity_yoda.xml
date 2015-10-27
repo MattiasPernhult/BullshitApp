@@ -29,7 +29,7 @@
             android:gravity="center"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="#000"
+            android:textColor="#FFF"
             />
 
         <info.hoang8f.widget.FButton
